@@ -14,10 +14,6 @@ class Oystercard
     update_balance(money)
   end
 
-  def deduct(money)
-    @balance -= money
-  end
-
   def in_journey?
     @enter_station ? true : false
   end
@@ -28,6 +24,7 @@ class Oystercard
   end
 
   def touch_out
+    deduct(1)
     @enter_station = false
   end
 
@@ -41,4 +38,8 @@ end
 
 def update_balance(money)
   @balance += money
+end
+
+def deduct(money)
+  @balance -= money
 end

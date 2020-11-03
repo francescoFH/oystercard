@@ -21,14 +21,6 @@ describe Oystercard do
     end
   end
 
-  describe "#deduct" do
-    context "When deduct money" do
-      it "reduces balance by £5" do
-        expect{ oystercard.deduct(5) }.to change{ oystercard.balance }.by(-5)
-      end
-    end
-  end
-
  describe "#touch_in" do
    it "is in a journey if the user touches into a station" do
      topped_up_oyster.touch_in
@@ -43,16 +35,20 @@ describe Oystercard do
   end
 
   describe "#in_journey?" do
-    context "when in jornuey" do
-      it "is not in a journey by default" do
-        expect(oystercard).not_to be_in_journey
-      end
+    it "is not in a journey by default" do
+      expect(oystercard).not_to be_in_journey
     end
   end
 
-  it "can touch out" do
-    topped_up_oyster.touch_in
-    topped_up_oyster.touch_out
-    expect(topped_up_oyster).not_to be_in_journey
+  describe "#touch_out" do
+    it "can touch out" do
+      topped_up_oyster.touch_in
+      topped_up_oyster.touch_out
+      expect(topped_up_oyster).not_to be_in_journey
+    end
+    it "deducts £1 when user touches out" do
+      expect { topped_up_oyster.touch_out }.to change{ topped_up_oyster.balance }.by(-1)
+    end
   end
+
 end
