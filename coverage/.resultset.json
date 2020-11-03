@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/francescofacca/Projects/oystercard/spec/oystercard_spec.rb": {
+      "/Users/Francesco/Projects/oystercard/spec/oystercard_spec.rb": {
         "lines": [
           1,
           null,
@@ -36,7 +36,7 @@
           null
         ]
       },
-      "/Users/francescofacca/Projects/oystercard/lib/oystercard.rb": {
+      "/Users/Francesco/Projects/oystercard/lib/oystercard.rb": {
         "lines": [
           1,
           null,
@@ -71,6 +71,6 @@
         ]
       }
     },
-    "timestamp": 1604407572
+    "timestamp": 1604412287
   }
 }
