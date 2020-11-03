@@ -18,14 +18,14 @@ class Oystercard
     @enter_station ? true : false
   end
 
-  def touch_in
+  def touch_in(station)
     fail "Your balance is less than £#{MINIMUM_BALANCE}. Please top up." if @balance < MINIMUM_BALANCE
-    @enter_station = true
+    @enter_station = station
   end
 
   def touch_out
     deduct(1)
-    @enter_station = false
+    @enter_station = nil
   end
 
 end
