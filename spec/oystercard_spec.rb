@@ -66,6 +66,7 @@ describe Oystercard do
       end
 
       it "deducts £1 when user touches out" do
+        topped_up_oyster.touch_in(station)
         expect { topped_up_oyster.touch_out(station) }.to change{ topped_up_oyster.balance }.by(-Oystercard::FARE)
       end
     end
@@ -78,12 +79,12 @@ describe Oystercard do
   it "store an exit station when touch out" do
      topped_up_oyster.touch_in(station)
      topped_up_oyster.touch_out(station)
-     expect(topped_up_oyster.journeys[0][:exit_station]).to eq(station)
+     expect(topped_up_oyster.journeys[0].exit_station).to eq(station)
   end
 
   it "store entry station in journeys" do
     topped_up_oyster.touch_in(station)
     topped_up_oyster.touch_out(station)
-    expect(topped_up_oyster.journeys[0][:enter_station]).to eq(station)
+    expect(topped_up_oyster.journeys[0].enter_station).to eq(station)
   end
 end

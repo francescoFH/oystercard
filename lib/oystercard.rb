@@ -23,11 +23,13 @@ class Oystercard
   def touch_in(station)
     fail "Your balance is less than £#{MINIMUM_BALANCE}. Please top up." if @balance < MINIMUM_BALANCE
     @enter_station = station
+    @journeys.push(Journey.new)
+    @journeys.last.enter_station = station
   end
 
   def touch_out(station)
     deduct(FARE)
-    @journeys << {enter_station: @enter_station, exit_station: station}
+    @journeys.last.exit_station = station
     @enter_station = nil
   end
 
