@@ -10,7 +10,9 @@ describe Oystercard do
       expect(oystercard.balance).to eq 0
     end
 
-
+    it "has a default of no journey_history on new oyster card" do
+      expect(oystercard.journey_history).to eq([])
+    end
   end
 
   describe "#top_up" do
@@ -37,14 +39,15 @@ describe Oystercard do
 
   describe "#touch_in" do
     context "when in journey" do
-      it "is into a station" do
+      before do
         topped_up_oyster.touch_in(station)
+      end
+      it "is into a station" do
         expect(topped_up_oyster).to be_in_journey
       end
 
-      it "stores the station" do
-        topped_up_oyster.touch_in(station)
-        expect(topped_up_oyster.enter_station).to eq(station)
+      it "store entry station in journey_history" do
+        expect(topped_up_oyster.journey_history[0].enter_station).to eq(station)
       end
     end
 
@@ -54,37 +57,27 @@ describe Oystercard do
         oystercard.balance < minimum_balance
         expect{ oystercard.touch_in(station) }.to raise_error "Your balance is less than £#{minimum_balance}. Please top up."
       end
+
     end
   end
 
   describe "#touch_out" do
     context "when not in journey" do
-      it "can touch out" do
+      before do
         topped_up_oyster.touch_in(station)
         topped_up_oyster.touch_out(station)
+      end
+      it "can touch out" do
         expect(topped_up_oyster).not_to be_in_journey
       end
 
       it "deducts £1 when user touches out" do
-        topped_up_oyster.touch_in(station)
         expect { topped_up_oyster.touch_out(station) }.to change{ topped_up_oyster.balance }.by(-Oystercard::FARE)
       end
+
+      it "stores an exit station when touch out in journey_history" do
+         expect(topped_up_oyster.journey_history[0].exit_station).to eq(station)
+      end
     end
-  end
-
-  it "store no journey on new oyster card" do
-    expect(oystercard.journeys ).to eq([])
-  end
-
-  it "store an exit station when touch out" do
-     topped_up_oyster.touch_in(station)
-     topped_up_oyster.touch_out(station)
-     expect(topped_up_oyster.journeys[0].exit_station).to eq(station)
-  end
-
-  it "store entry station in journeys" do
-    topped_up_oyster.touch_in(station)
-    topped_up_oyster.touch_out(station)
-    expect(topped_up_oyster.journeys[0].enter_station).to eq(station)
   end
 end

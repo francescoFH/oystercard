@@ -3,12 +3,12 @@ class Oystercard
   MAXIMUM_BALANCE = 90
   MINIMUM_BALANCE = 1
   FARE = 1
-  attr_reader :balance, :enter_station, :journeys
+  attr_reader :balance, :enter_station, :journey_history
 
   def initialize(balance = 0)
     @balance = balance
     @enter_station = nil
-    @journeys = []
+    @journey_history = []
   end
 
   def top_up(money)
@@ -17,22 +17,18 @@ class Oystercard
   end
 
   def in_journey?
-    @enter_station ? true : false
+    !!@enter_station ##-> this is forced into a boolean context (true), and then negated (false), and then negated again (true)
   end
 
   def touch_in(station)
     fail "Your balance is less than £#{MINIMUM_BALANCE}. Please top up." if @balance < MINIMUM_BALANCE
-    @enter_station = station
-    @journeys.push(Journey.new)
-    @journeys.last.enter_station = station
+    store_entry_station(station)
   end
 
   def touch_out(station)
     deduct(FARE)
-    @journeys.last.exit_station = station
-    @enter_station = nil
+    store_exit_station(station)
   end
-
 end
 
 private
@@ -45,6 +41,17 @@ def update_balance(money)
   @balance += money
 end
 
+def store_entry_station(station)
+  @enter_station = station
+  @journey_history.push(Journey.new)
+  @journey_history.last.enter_station = station
+end
+
 def deduct(money)
   @balance -= money
+end
+
+def store_exit_station(station)
+  @journey_history.last.exit_station = station
+  @enter_station = nil
 end

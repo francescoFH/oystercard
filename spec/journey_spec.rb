@@ -21,4 +21,13 @@ let (:station) { double :station}
     expect(subject.exit_station).to eq(station)
   end
 
+  it "returns default fare if end and start aren't nil" do
+    subject.enter_station = station
+    subject.exit_station = station
+    expect(subject.fare).to eq Oystercard::FARE
+  end
+
+  it "returns penalty fare if enter or exit are nil" do
+    expect(subject.fare).to eq Journey::PENALTY_FARE
+  end
 end
