@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/Francesco/Projects/oystercard/spec/journey_spec.rb": {
+      "/Users/francescofacca/Projects/oystercard/spec/journey_spec.rb": {
         "lines": [
           1,
           null,
@@ -10,13 +10,6 @@
           null,
           1,
           1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
           1,
           1,
           null,
@@ -29,16 +22,29 @@
           1,
           1,
           1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
           1,
           null,
           null,
           1,
           1,
+          null,
           null,
           null
         ]
       },
-      "/Users/Francesco/Projects/oystercard/lib/journey.rb": {
+      "/Users/francescofacca/Projects/oystercard/lib/journey.rb": {
         "lines": [
           1,
           null,
@@ -55,7 +61,7 @@
           null
         ]
       },
-      "/Users/Francesco/Projects/oystercard/spec/oystercard_spec.rb": {
+      "/Users/francescofacca/Projects/oystercard/spec/oystercard_spec.rb": {
         "lines": [
           1,
           null,
@@ -142,7 +148,7 @@
           null
         ]
       },
-      "/Users/Francesco/Projects/oystercard/lib/oystercard.rb": {
+      "/Users/francescofacca/Projects/oystercard/lib/oystercard.rb": {
         "lines": [
           1,
           null,
@@ -203,7 +209,7 @@
           null
         ]
       },
-      "/Users/Francesco/Projects/oystercard/spec/station_spec.rb": {
+      "/Users/francescofacca/Projects/oystercard/spec/station_spec.rb": {
         "lines": [
           1,
           null,
@@ -219,7 +225,7 @@
           null
         ]
       },
-      "/Users/Francesco/Projects/oystercard/lib/station.rb": {
+      "/Users/francescofacca/Projects/oystercard/lib/station.rb": {
         "lines": [
           1,
           1,
@@ -231,6 +237,6 @@
         ]
       }
     },
-    "timestamp": 1604514755
+    "timestamp": 1604534665
   }
 }
